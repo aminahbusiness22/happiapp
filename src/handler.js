@@ -1,90 +1,83 @@
 const { nanoid } = require("nanoid");
 const books = require("./books");
 
-// const addBookHandler = (request, h) => {
-//   console.log(`add`)
-//   const { judul, penerbit, jumlah_halaman } = request.payload;
-//   const id = nanoid(16);
-//   const createdAt = new Date().toISOString();
-//   const udpatedAt = createdAt;
-
-//   const newBook = {
-//     judul,
-//     penerbit,
-//     jumlah_halaman,
-//     id,
-//     createdAt,
-//     udpatedAt,
-//   };
-//   books.books.push(newBook);
-//   const isSuccess = books.books.filter((book) => book.id === id).length > 0;
-//   if (isSuccess) {
-//     const response = h.response({
-//       status: "success",
-//       message: "Buku berhasil ditambah",
-//       data: {
-//         nodeId: id,
-//       },
-//     });
-//     response.code(201);
-//     return response;
-//   }
-
-//   const response = h.reponse({
-//     status: "fail",
-//     message: "Buku gagal di tambahkan!",
-//   });
-//   response.code(500);
-//   return response;
-// };
-
 const addBookHandler = (request, h) => {
-    console.log(`add`)
-    const { judul, penerbit, jumlah_halaman } = request.payload;
-    const id = nanoid(16);
-    const createdAt = new Date().toISOString();
-    const udpatedAt = createdAt;
-  
-    const newBook = {
-      judul,
-      penerbit,
-      jumlah_halaman,
-      id,
-      createdAt,
-      udpatedAt,
-    };
-    books.books.push(newBook);
-    const isSuccess = books.books.filter((book) => book.id === id).length > 0;
-    if (isSuccess) {
-      const response = h.response({
-        status: "success",
-        message: "Buku berhasil ditambah",
-        data: {
-          nodeId: id,
-        },
-      });
-      response.code(201);
-  
-      // Menambahkan header Access-Control-Allow-Origin
-      return response.header('Access-Control-Allow-Origin', '*');
-    }
-  
-    const response = h.reponse({
-      status: "fail",
-      message: "Buku gagal di tambahkan!",
-    });
-    response.code(500);
-  
-    // Menambahkan header Access-Control-Allow-Origin
-    return response.header('Access-Control-Allow-Origin', '*');
-  };
+  console.log(`add`)
+  const { judul, penerbit, jumlah_halaman } = request.payload;
+  const id = nanoid(16);
+  const createdAt = new Date().toISOString();
+  const udpatedAt = createdAt;
 
-// const getAllBooksHandler = (request, h) => ({
-//   status: "success get all books",
-//   data: {
-//     books,
-//   },
-// });
+  const newBook = {
+    judul,
+    penerbit,
+    jumlah_halaman,
+    id,
+    createdAt,
+    udpatedAt,
+  };
+  books.books.push(newBook);
+  const isSuccess = books.books.filter((book) => book.id === id).length > 0;
+  if (isSuccess) {
+    const response = h.response({
+      status: "success",
+      message: "Buku berhasil ditambah",
+      data: {
+        nodeId: id,
+      },
+    });
+    response.code(201);
+    return response;
+  }
+
+  const response = h.reponse({
+    status: "fail",
+    message: "Buku gagal di tambahkan!",
+  });
+  response.code(500);
+  return response;
+};
+
+// const addBookHandler = (request, h) => {
+//     console.log(`add`)
+//     const { judul, penerbit, jumlah_halaman } = request.payload;
+//     const id = nanoid(16);
+//     const createdAt = new Date().toISOString();
+//     const udpatedAt = createdAt;
+  
+//     const newBook = {
+//       judul,
+//       penerbit,
+//       jumlah_halaman,
+//       id,
+//       createdAt,
+//       udpatedAt,
+//     };
+//     books.books.push(newBook);
+//     const isSuccess = books.books.filter((book) => book.id === id).length > 0;
+//     if (isSuccess) {
+//       const response = h.response({
+//         status: "success",
+//         message: "Buku berhasil ditambah",
+//         data: {
+//           nodeId: id,
+//         },
+//       });
+//       response.code(201);
+  
+//       // Menambahkan header Access-Control-Allow-Origin
+//       return response.header('Access-Control-Allow-Origin', '*');
+//     }
+  
+//     const response = h.reponse({
+//       status: "fail",
+//       message: "Buku gagal di tambahkan!",
+//     });
+//     response.code(500);
+  
+//     // Menambahkan header Access-Control-Allow-Origin
+//     return response.header('Access-Control-Allow-Origin', '*');
+//   };
 
 const getAllBooksHandler = (request, h) => {
     return h.response({
