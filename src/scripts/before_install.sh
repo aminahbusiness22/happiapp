@@ -14,7 +14,7 @@ if [ ! command -v nvm &> /dev/null ]; then
 fi
 
 # CEK DIREKTORI
-DIR="/home/ec2-user/happiapp"
+DIR="/home/ec2-user/environment/happiapp"
 echo "CEK DIRECTORY $DIR"
 if [ -d "$DIR" ]; then
   echo "$DIR TELAH ADA"
