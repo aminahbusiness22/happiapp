@@ -7,7 +7,11 @@ const init = async () => {
     port: 5000,
     host: "0.0.0.0",
     "routes": {
-      "cors": true
+      "cors": {
+          "origin": ["http://0.0.0.0:5000"],
+          "headers": ["Accept", "Content-Type"],
+          "additionalHeaders": ["X-Requested-With"]
+      }
   }
   });
 
