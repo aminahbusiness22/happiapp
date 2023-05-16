@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 
 # install nvm dan node
 echo "CEK NVM"
