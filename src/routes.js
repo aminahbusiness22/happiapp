@@ -14,11 +14,22 @@ const {
       handler: (request, h) => {
         return "Hello World!, oh yeaahhh woho... berhasil. lelah ya... mangat...haha";
       },
+      
     },
     // create date (POST)
     {
       method: "POST",
       path: "/books",
+      config: {
+        cors: {
+          origin: [
+              '*'
+          ],
+          headers: ["Access-Control-Allow-Headers", "Access-Control-Allow-Origin","Accept", "Authorization", "Content-Type", "If-None-Match", "Accept-language"],
+          additionalHeaders: ["Access-Control-Allow-Headers: Origin, Content-Type, x-ms-request-id , Authorization"],
+          credentials: true
+      }
+    },
       handler: addBookHandler,
     },
     //get all
