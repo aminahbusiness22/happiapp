@@ -3,6 +3,7 @@ const books = require("./books");
 
 const addBookHandler = (request, h) => {
   console.log(`add`)
+  console.log(request.payload)
   const { judul, penerbit, jumlah_halaman } = request.payload;
   const id = nanoid(16);
   const createdAt = new Date().toISOString();
