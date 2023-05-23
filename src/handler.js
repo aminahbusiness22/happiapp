@@ -2,8 +2,7 @@ const { nanoid } = require("nanoid");
 const books = require("./books");
 
 const addBookHandler = (request, h) => {
-  console.log(`add`)
-  console.log(request.payload)
+  console.log(`add`);
   const { judul, penerbit, jumlah_halaman } = request.payload;
   const id = nanoid(16);
   const createdAt = new Date().toISOString();
@@ -24,6 +23,9 @@ const addBookHandler = (request, h) => {
       status: "success",
       message: "Buku berhasil ditambah",
       data: {
+        judul: judul,
+        penerbit: penerbit,
+        jumlah_halaman: jumlah_halaman,
         nodeId: id,
       },
     });
@@ -39,60 +41,16 @@ const addBookHandler = (request, h) => {
   return response;
 };
 
-// const addBookHandler = (request, h) => {
-//     console.log(`add`)
-//     const { judul, penerbit, jumlah_halaman } = request.payload;
-//     const id = nanoid(16);
-//     const createdAt = new Date().toISOString();
-//     const udpatedAt = createdAt;
-  
-//     const newBook = {
-//       judul,
-//       penerbit,
-//       jumlah_halaman,
-//       id,
-//       createdAt,
-//       udpatedAt,
-//     };
-//     books.books.push(newBook);
-//     const isSuccess = books.books.filter((book) => book.id === id).length > 0;
-//     if (isSuccess) {
-//       const response = h.response({
-//         status: "success",
-//         message: "Buku berhasil ditambah",
-//         data: {
-//           nodeId: id,
-//         },
-//       });
-//       response.code(201);
-  
-//       // Menambahkan header Access-Control-Allow-Origin
-//       return response.header('Access-Control-Allow-Origin', '*');
-//     }
-  
-//     const response = h.reponse({
-//       status: "fail",
-//       message: "Buku gagal di tambahkan!",
-//     });
-//     response.code(500);
-  
-//     // Menambahkan header Access-Control-Allow-Origin
-//     return response.header('Access-Control-Allow-Origin', '*');
-//   };
-
-const getAllBooksHandler = (request, h) => {
-    return h.response({
-      status: "success get all books",
-      data: {
-        books,
-      },
-    })
-    .header('Access-Control-Allow-Origin', '*');
-  };
+const getAllBooksHandler = (request, h) => ({
+  status: "success get all books",
+  data: {
+    books,
+  },
+});
 
 // show detail
 const getBookByIdHandler = (request, h) => {
-  console.log(`get id`)
+  console.log(`get id`);
   const { id } = request.params;
   const book = books.books.filter((n) => n.id === id)[0];
   if (book !== undefined) {
@@ -113,7 +71,7 @@ const getBookByIdHandler = (request, h) => {
 
 //edit book
 const editBookByIdHandler = (request, h) => {
-  console.log(`edit`)
+  console.log(`edit`);
   const { id, createAt } = request.params;
   const { judul, penerbit, jumlah_halaman } = request.payload;
   const updatedAt = new Date().toISOString();
@@ -146,7 +104,7 @@ const editBookByIdHandler = (request, h) => {
 
 //delete book
 const deleteBookByIdHandler = (request, h) => {
-  console.log(`hapus`)
+  console.log(`hapus`);
   const { id } = request.params;
   const index = books.books.findIndex((book) => book.id === id);
   console.log(books.books.findIndex((book) => book.id === id));

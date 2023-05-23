@@ -1,21 +1,20 @@
 const Hapi = require("@hapi/hapi");
 const routes = require("./routes");
-const cors = require('cors');
 
 const init = async () => {
   const server = Hapi.server({
-    port: 5000,
+    port: 5001,
     host: "0.0.0.0",
-    routes:{
-      cors:true,
-    }
+    "routes": {
+      "cors": true
+  }
   });
 
   // server.route({
   //   method: "GET",
   //   path: "/",
   //   handler: (request, h) => {
-  //     return "Success!";
+  //     return "Succeed!";
   //   },
   // });
 
